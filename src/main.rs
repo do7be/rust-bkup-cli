@@ -2,7 +2,6 @@ use chrono::Local;
 use clap::Parser;
 use std::path::Path;
 
-// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
@@ -29,8 +28,8 @@ fn main() {
     let backup_suffix = get_file_suffix(&args);
 
     let to_path = Path::new(&args.path);
-    let to_path_string = to_path.file_name().unwrap().to_str().unwrap().to_string();
-    let new_filename = to_path_string + "." + &backup_suffix;
+    let to_file_name_string = to_path.file_name().unwrap().to_str().unwrap().to_string();
+    let new_filename = to_file_name_string + "." + &backup_suffix;
     let to = to_path.with_file_name(new_filename);
 
     std::fs::copy(&args.path, to).expect("Could not copy file");
