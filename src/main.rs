@@ -1,6 +1,6 @@
 use chrono::Local;
 use clap::Parser;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -25,12 +25,7 @@ fn main() {
         panic!("No such file or directory");
     }
 
-    let backup_suffix = get_file_suffix(&args);
-
-    let to_path = Path::new(&args.path);
-    let to_file_name_string = to_path.file_name().unwrap().to_str().unwrap().to_string();
-    let new_filename = to_file_name_string + "." + &backup_suffix;
-    let to = to_path.with_file_name(new_filename);
+    let to = get_to_path(&args);
 
     std::fs::copy(&args.path, to).expect("Could not copy file");
 }
@@ -46,4 +41,12 @@ fn get_file_suffix(args: &Args) -> String {
     } else {
         dt.format("%Y%m%d%H%M%S").to_string()
     }
+}
+
+fn get_to_path(args: &Args) -> PathBuf {
+    let to_path = Path::new(&args.path);
+    let to_file_name_string = to_path.file_name().unwrap().to_str().unwrap().to_string();
+    let backup_suffix = get_file_suffix(&args);
+    let new_filename = to_file_name_string + "." + &backup_suffix;
+    to_path.with_file_name(new_filename)
 }
