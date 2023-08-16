@@ -55,7 +55,7 @@ fn get_to_path(args: &Args) -> Option<PathBuf> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{get_file_suffix, Args};
+    use crate::{get_file_suffix, get_to_path, Args};
     use chrono::Local;
     use std::path::PathBuf;
 
@@ -114,5 +114,18 @@ mod tests {
         let expected = dt.format("%Y%m%d%H%M%S").to_string();
         let actual = get_file_suffix(&args);
         assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn get_path_org_ok() {
+        let args = Args {
+            path: PathBuf::from("hoge.txt"),
+            original: true,
+            bak: false,
+            simple: false,
+        };
+        let expected = PathBuf::from("hoge.txt.org");
+        let actual = get_to_path(&args);
+        assert_eq!(expected, actual.expect("Could not get to path"));
     }
 }
