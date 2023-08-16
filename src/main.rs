@@ -25,7 +25,8 @@ fn main() {
         Some(v) => v,
         None => panic!("Wrong file path"),
     };
-    std::fs::copy(&args.path, to).expect("Could not copy file");
+    std::fs::copy(&args.path, &to).expect("Could not copy file");
+    println!("Created: {}", to.display());
 }
 
 fn get_file_suffix(args: &Args) -> String {
