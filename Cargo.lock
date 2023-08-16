@@ -79,6 +79,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b4682ae6287fcf752ecaabbfcc7b6f9b72aa33933dc23a554d853aea8eea8635"
 
 [[package]]
+name = "bkup"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "clap",
+]
+
+[[package]]
 name = "bumpalo"
 version = "3.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -333,14 +341,6 @@ dependencies = [
  "libc",
  "wasi",
  "winapi",
-]
-
-[[package]]
-name = "try-rust-cli"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "clap",
 ]
 
 [[package]]
