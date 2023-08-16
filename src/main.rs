@@ -23,7 +23,7 @@ fn main() {
     let to = get_to_path(&args);
     let to = match to {
         Some(v) => v,
-        None => panic!("Could not copy file"),
+        None => panic!("Wrong file path"),
     };
     std::fs::copy(&args.path, to).expect("Could not copy file");
 }
