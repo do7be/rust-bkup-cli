@@ -52,3 +52,67 @@ fn get_to_path(args: &Args) -> Option<PathBuf> {
 
     Some(to_path.with_file_name(new_filename))
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::{get_file_suffix, Args};
+    use chrono::Local;
+    use std::path::PathBuf;
+
+    #[test]
+    fn suffix_org_ok() {
+        let args = Args {
+            path: PathBuf::from("hoge.txt"),
+            original: true,
+            bak: false,
+            simple: false,
+        };
+        let expected = "org";
+        let actual = get_file_suffix(&args);
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn suffix_bak_ok() {
+        let args = Args {
+            path: PathBuf::from("hoge.txt"),
+            original: false,
+            bak: true,
+            simple: false,
+        };
+        let expected = "bak";
+        let actual = get_file_suffix(&args);
+        assert_eq!(expected, actual);
+    }
+
+    // now()のmockがまだ実装されていないため、simpleとdefaultのケースのテストは雑に書いておく。
+    // https://github.com/chronotope/chrono/pull/580
+    #[test]
+    fn suffix_simple_ok() {
+        let args = Args {
+            path: PathBuf::from("hoge.txt"),
+            original: false,
+            bak: false,
+            simple: true,
+        };
+        let dt = Local::now();
+        let expected = dt.format("%Y%m%d").to_string();
+        let actual = get_file_suffix(&args);
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn suffix_default_ok() {
+        let args = Args {
+            path: PathBuf::from("hoge.txt"),
+            original: false,
+            bak: false,
+            simple: false,
+        };
+        let dt = Local::now();
+        // TODO: 状況・環境によっては落ちるかもしれない
+        let expected = dt.format("%Y%m%d%H%M%S").to_string();
+        let actual = get_file_suffix(&args);
+        assert_eq!(expected, actual);
+    }
+}
