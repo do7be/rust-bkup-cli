@@ -7,12 +7,15 @@ use std::path::{Path, PathBuf};
 struct Args {
     path: std::path::PathBuf,
 
+    /// Create filename.bak
     #[arg(short, long)]
     bak: bool,
 
+    /// Create filename.org
     #[arg(short, long)]
     original: bool,
 
+    /// Create filename.YYYYmmdd
     #[arg(short, long)]
     simple: bool,
 }

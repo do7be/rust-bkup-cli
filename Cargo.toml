@@ -2,8 +2,14 @@
 name = "bkup"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["do7be"]
+license = "MIT"
+description = "CLI to add a date to the end of the file name and makes a copy. e.g. filename.YYYYmmddHHMMSS"
+readme = "README.md"
+homepage = "https://github.com/do7be/rust-bkup-cli"
+repository = "https://github.com/do7be/rust-bkup-cli"
+keywords = ["cli", "copy", "date"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
