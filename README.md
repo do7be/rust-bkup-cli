@@ -28,3 +28,7 @@ Options:
 $ bkup example.txt
 Created: example.txt.20230101010101
 ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/do7be/rust-cli-bkup/blob/main/LICENSE) file at the root of the repository.
