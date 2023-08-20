@@ -1,3 +1,6 @@
+[![Crates.io](https://img.shields.io/crates/v/bkup?style=flat-square)](https://crates.io/crates/bkup)
+[![Crates.io](https://img.shields.io/crates/d/bkup?style=flat-square)](https://crates.io/crates/bkup)
+
 ## Installation
 
 ```
